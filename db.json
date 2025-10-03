@@ -1,59 +1,60 @@
 {
-    "countries": [
-        { 
-            "id": 1, 
-            "name": "Colombia" 
-        },
-        { 
-            "id": 2, 
-            "name": "México" 
-        }
-    ],
-    "regions": [
-        { 
-            "id": 1, 
-            "name": "Antioquia", 
-            "countryId": 1 
-        },
-        { 
-            "id": 2, 
-            "name": "Jalisco",
-            "countryId": 2 
-        }
-    ],
-    "cities": [
-        { 
-            "id": 1, 
-            "name": "Medellín", 
-            "regionId": 1 
-        },
-        { 
-            "id": 2, 
-            "name": "Guadalajara", 
-            "regionId": 2 
-        }
-    ],
-    "companies": [
-        { 
-            "id": 1, 
-            "name": "Empresa A", 
-            "cityId": 1 
-        },
-        { 
-            "id": 2, 
-            "name": "Empresa B", 
-            "cityId": 2 
-        }
-    ],
-    "branches": [
-        { 
-            "id": 1, 
-            "name": "Sucursal Centro", 
-            "companyId": 1 
-        },
-        { 
-            "id": 2, 
-            "name": "Sucursal Norte", 
-            "companyId": 2 }
-    ]
+  "countries": [
+    {
+      "name": "Colombia",
+      "id": "1"
+    },
+    {
+      "id": "9ec2",
+      "name": "rusia"
+    }
+  ],
+  "regions": [
+    {
+      "id": "1",
+      "name": "Antioquia",
+      "countryId": 1
+    },
+    {
+      "id": "2",
+      "name": "Jalisco",
+      "countryId": 2
+    }
+  ],
+  "cities": [
+    {
+      "id": "1",
+      "name": "Medellín",
+      "regionId": 1
+    },
+    {
+      "id": "2",
+      "name": "Guadalajara",
+      "regionId": 2
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "Empresa A",
+      "cityId": 1
+    },
+    {
+      "id": "2",
+      "name": "Empresa B",
+      "cityId": 2
+    }
+  ],
+  "branches": [
+    {
+      "id": "1",
+      "name": "Sucursal Centro",
+      "companyId": 1
+    },
+    {
+      "id": "2",
+      "name": "Sucursal Norte",
+      "companyId": 2
+    }
+  ]
 }

@@ -52,6 +52,7 @@
     <section id="regions" class="view">
         <h2>Gestión de Regiones</h2>
         <input type="text" id="regionName" placeholder="Nombre región">
+        <!-- id sigue la convención: {entity}-{relation}-select -->
         <select id="regions-countries-select"></select>
         <button id="addRegion">Agregar</button>
         <input type="text" id="searchRegion" placeholder="Buscar región">
@@ -146,8 +147,8 @@
 
     <script src="script.js"></script>
     <script>
-        // Inicializar CRUD con relaciones
-        initCRUD("countries", true);
+        // Inicializar CRUD con relaciones (relaciones = array de nombres de la colección padre)
+        initCRUD("countries", true, []);
         initCRUD("regions", true, ["countries"]);
         initCRUD("cities", true, ["regions"]);
         initCRUD("companies", true, ["cities"]);
