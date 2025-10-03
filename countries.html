@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Países</title>
+    <title>Países</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Lista de Países</h1>
+    <input type="text" id="countryName" placeholder="Nombre del país">
+    <button id="addCountry">➕ Agregar País</button>
+
+    <input type="text" id="searchCountry" placeholder="Buscar país">
+    <button id="searchCountryBtn">🔍 Buscar</button>
+    <div id="searchCountryResult"></div>
+
     <table>
         <thead>
             <tr>
@@ -23,4 +32,5 @@
         initCRUD("countries", true);
     </script>
 </body>
+
 </html>

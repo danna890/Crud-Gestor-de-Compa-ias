@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Sucursales</title>
+    <title>Sucursales</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Lista de Sucursales</h1>
+    <select id="branch-companyId"></select>
+    <input type="text" id="branchName" placeholder="Nombre de la sucursal">
+    <button id="addBranch">➕ Agregar Sucursal</button>
+
+    <input type="text" id="searchBranch" placeholder="Buscar sucursal">
+    <button id="searchBranchBtn">🔍 Buscar</button>
+    <div id="searchBranchResult"></div>
+
     <table>
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Compañía</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
             </tr>
@@ -20,7 +31,8 @@
 
     <script src="script.js"></script>
     <script>
-        initCRUD("branches", true);
+        initCRUD("branches", true, ["companyId"]);
     </script>
 </body>
+
 </html>

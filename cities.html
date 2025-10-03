@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Ciudades</title>
+    <title>Ciudades</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Lista de Ciudades</h1>
+    <select id="city-regionId"></select>
+    <input type="text" id="cityName" placeholder="Nombre de la ciudad">
+    <button id="addCity">➕ Agregar Ciudad</button>
+
+    <input type="text" id="searchCity" placeholder="Buscar ciudad">
+    <button id="searchCityBtn">🔍 Buscar</button>
+    <div id="searchCityResult"></div>
+
     <table>
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Región</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
             </tr>
@@ -20,7 +31,8 @@
 
     <script src="script.js"></script>
     <script>
-        initCRUD("cities", true);
+        initCRUD("cities", true, ["regionId"]);
     </script>
 </body>
+
 </html>

@@ -1,5 +1,17 @@
-function initCRUD(entity, loadTable = true) {
+function initCRUD(entity, loadTable = true, relations = []) {
     const API = `http://localhost:3000/${entity}`;
+
+    // 🔹 Cargar opciones para selects
+    async function loadRelations() {
+        for (let rel of relations) {
+            const res = await fetch(`http://localhost:3000/${rel}`);
+            const data = await res.json();
+            const select = document.getElementById(`${entity}-${rel}-select`);
+            if (select) {
+                select.innerHTML = data.map(r => `<option value="${r.id}">${r.name || r.nombre}</option>`).join("");
+            }
+        }
+    }
 
     // Listar
     async function loadData() {
@@ -11,19 +23,39 @@ function initCRUD(entity, loadTable = true) {
         table.innerHTML = "";
 
         data.forEach(c => {
-        table.innerHTML += `
+            table.innerHTML += `
             <tr>
-            <td>${c.id}</td>
-            <td>
-                <input type="text" value="${c.name || c.nombre || c.companyName || c.branchName}" id="edit-${entity}-${c.id}">
-            </td>
-            <td class="actions">
-                <button onclick="updateData('${entity}', ${c.id})">✏ Editar</button>
-                <button onclick="deleteData('${entity}', ${c.id})">🗑 Eliminar</button>
-            </td>
+                <td>${c.id}</td>
+                <td>
+                    <input type="text" value="${c.name || c.nombre || c.companyName || c.branchName}" id="edit-${entity}-${c.id}">
+                </td>
+                ${relations.map(rel => `
+                    <td>
+                        <select id="edit-${entity}-${rel}-${c.id}"></select>
+                    </td>
+                `).join("")}
+                <td class="actions">
+                    <button onclick="updateData('${entity}', ${c.id})">✏ Editar</button>
+                    <button onclick="deleteData('${entity}', ${c.id})">🗑 Eliminar</button>
+                </td>
             </tr>
-        `;
+            `;
         });
+
+        // 🔹 cargar selects de cada fila
+        for (let rel of relations) {
+            const res = await fetch(`http://localhost:3000/${rel}`);
+            const relData = await res.json();
+            data.forEach(c => {
+                const select = document.getElementById(`edit-${entity}-${rel}-${c.id}`);
+                if (select) {
+                    select.innerHTML = relData.map(r =>
+                        `<option value="${r.id}" ${c[`${rel.slice(0, -1)}Id`] == r.id ? "selected" : ""}>
+                            ${r.name || r.nombre}
+                        </option>`).join("");
+                }
+            });
+        }
     }
 
     // Crear
@@ -32,10 +64,19 @@ function initCRUD(entity, loadTable = true) {
         if (!input) return;
         const name = input.value;
         if (!name) return alert("Escribe un nombre");
+
+        let newData = { name };
+
+        // añadir relaciones seleccionadas
+        for (let rel of relations) {
+            const select = document.getElementById(`${entity}-${rel}-select`);
+            if (select) newData[`${rel.slice(0, -1)}Id`] = parseInt(select.value);
+        }
+
         await fetch(API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name })
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newData)
         });
         input.value = "";
         loadData();
@@ -44,10 +85,18 @@ function initCRUD(entity, loadTable = true) {
     // Actualizar
     window.updateData = async function(ent, id) {
         const name = document.getElementById(`edit-${ent}-${id}`).value;
+        let updated = { name };
+
+        // relaciones
+        for (let rel of relations) {
+            const select = document.getElementById(`edit-${ent}-${rel}-${id}`);
+            if (select) updated[`${rel.slice(0, -1)}Id`] = parseInt(select.value);
+        }
+
         await fetch(`http://localhost:3000/${ent}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name })
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updated)
         });
         loadData();
     };
@@ -55,8 +104,8 @@ function initCRUD(entity, loadTable = true) {
     // Eliminar
     window.deleteData = async function(ent, id) {
         if (confirm("¿Seguro que deseas eliminar?")) {
-        await fetch(`http://localhost:3000/${ent}/${id}`, { method: "DELETE" });
-        loadData();
+            await fetch(`http://localhost:3000/${ent}/${id}`, { method: "DELETE" });
+            loadData();
         }
     };
 
@@ -70,8 +119,8 @@ function initCRUD(entity, loadTable = true) {
         const data = await res.json();
         const result = document.getElementById(`search${entity.slice(0,-1).charAt(0).toUpperCase() + entity.slice(0,-1).slice(1)}Result`);
         result.innerHTML = data.length
-        ? data.map(c => `<p>Encontrado: ${c.name} (id ${c.id})</p>`).join("")
-        : "<p>No encontrado</p>";
+            ? data.map(c => `<p>Encontrado: ${c.name} (id ${c.id})</p>`).join("")
+            : "<p>No encontrado</p>";
     }
 
     // Eventos
@@ -83,4 +132,5 @@ function initCRUD(entity, loadTable = true) {
 
     // Inicial
     loadData();
+    loadRelations();
 }
