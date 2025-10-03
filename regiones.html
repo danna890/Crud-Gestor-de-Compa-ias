@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Regiones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Lista de Regiones</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="regionsTable"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+    <script>
+        initCRUD("regions", true);
+    </script>
+</body>
+
+</html>

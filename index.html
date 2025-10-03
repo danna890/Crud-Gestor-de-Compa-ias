@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestión</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Sistema de Gestión</h1>
+
+    <!-- Menú -->
+    <nav>
+        <button onclick="showSection('main')">Inicio</button>
+        <button onclick="showSection('countries')">Países</button>
+        <button onclick="showSection('regions')">Regiones</button>
+        <button onclick="showSection('cities')">Ciudades</button>
+        <button onclick="showSection('companies')">Compañías</button>
+        <button onclick="showSection('branches')">Sucursales</button>
+    </nav>
+
+    <!-- Sección principal -->
+    <section id="main" class="view active">
+        <h2>Bienvenido</h2>
+        <p>Selecciona una entidad en el menú para gestionar.</p>
+    </section>
+
+    <!-- Países -->
+    <section id="countries" class="view">
+        <h2>Gestión de Países</h2>
+        <input type="text" id="countryName" placeholder="Nombre país">
+        <button id="addCountry">Agregar</button>
+        <input type="text" id="searchCountry" placeholder="Buscar país">
+        <button id="searchCountryBtn">Buscar</button>
+        <div id="searchCountryResult"></div>
+
+        <h3>Lista de Países</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="countriesTable"></tbody>
+        </table>
+    </section>
+
+    <!-- Regiones -->
+    <section id="regions" class="view">
+        <h2>Gestión de Regiones</h2>
+        <input type="text" id="regionName" placeholder="Nombre región">
+        <button id="addRegion">Agregar</button>
+        <input type="text" id="searchRegion" placeholder="Buscar región">
+        <button id="searchRegionBtn">Buscar</button>
+        <div id="searchRegionResult"></div>
+
+        <h3>Lista de Regiones</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="regionsTable"></tbody>
+        </table>
+    </section>
+
+    <!-- Ciudades -->
+    <section id="cities" class="view">
+        <h2>Gestión de Ciudades</h2>
+        <input type="text" id="cityName" placeholder="Nombre ciudad">
+        <button id="addCity">Agregar</button>
+        <input type="text" id="searchCity" placeholder="Buscar ciudad">
+        <button id="searchCityBtn">Buscar</button>
+        <div id="searchCityResult"></div>
+
+        <h3>Lista de Ciudades</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="citiesTable"></tbody>
+        </table>
+    </section>
+
+    <!-- Compañías -->
+    <section id="companies" class="view">
+        <h2>Gestión de Compañías</h2>
+        <input type="text" id="companyName" placeholder="Nombre compañía">
+        <button id="addCompany">Agregar</button>
+        <input type="text" id="searchCompany" placeholder="Buscar compañía">
+        <button id="searchCompanyBtn">Buscar</button>
+        <div id="searchCompanyResult"></div>
+
+        <h3>Lista de Compañías</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="companiesTable"></tbody>
+        </table>
+    </section>
+
+    <!-- Sucursales -->
+    <section id="branches" class="view">
+        <h2>Gestión de Sucursales</h2>
+        <input type="text" id="branchName" placeholder="Nombre sucursal">
+        <button id="addBranch">Agregar</button>
+        <input type="text" id="searchBranch" placeholder="Buscar sucursal">
+        <button id="searchBranchBtn">Buscar</button>
+        <div id="searchBranchResult"></div>
+
+        <h3>Lista de Sucursales</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="branchesTable"></tbody>
+        </table>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        initCRUD("countries", true);
+        initCRUD("regions", true);
+        initCRUD("cities", true);
+        initCRUD("companies", true);
+        initCRUD("branches", true);
+
+        function showSection(id) {
+            document.querySelectorAll(".view").forEach(sec => sec.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+        }
+    </script>
+</body>
+
+</html>
