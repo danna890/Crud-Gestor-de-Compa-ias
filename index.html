@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Gestión</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Sistema de Gestión</h1>
 
@@ -50,6 +52,7 @@
     <section id="regions" class="view">
         <h2>Gestión de Regiones</h2>
         <input type="text" id="regionName" placeholder="Nombre región">
+        <select id="regions-countries-select"></select>
         <button id="addRegion">Agregar</button>
         <input type="text" id="searchRegion" placeholder="Buscar región">
         <button id="searchRegionBtn">Buscar</button>
@@ -61,6 +64,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>País</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -72,6 +76,7 @@
     <section id="cities" class="view">
         <h2>Gestión de Ciudades</h2>
         <input type="text" id="cityName" placeholder="Nombre ciudad">
+        <select id="cities-regions-select"></select>
         <button id="addCity">Agregar</button>
         <input type="text" id="searchCity" placeholder="Buscar ciudad">
         <button id="searchCityBtn">Buscar</button>
@@ -83,6 +88,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Región</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -94,6 +100,7 @@
     <section id="companies" class="view">
         <h2>Gestión de Compañías</h2>
         <input type="text" id="companyName" placeholder="Nombre compañía">
+        <select id="companies-cities-select"></select>
         <button id="addCompany">Agregar</button>
         <input type="text" id="searchCompany" placeholder="Buscar compañía">
         <button id="searchCompanyBtn">Buscar</button>
@@ -105,6 +112,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Ciudad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -116,6 +124,7 @@
     <section id="branches" class="view">
         <h2>Gestión de Sucursales</h2>
         <input type="text" id="branchName" placeholder="Nombre sucursal">
+        <select id="branches-companies-select"></select>
         <button id="addBranch">Agregar</button>
         <input type="text" id="searchBranch" placeholder="Buscar sucursal">
         <button id="searchBranchBtn">Buscar</button>
@@ -127,6 +136,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Compañía</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -136,11 +146,12 @@
 
     <script src="script.js"></script>
     <script>
+        // Inicializar CRUD con relaciones
         initCRUD("countries", true);
-        initCRUD("regions", true);
-        initCRUD("cities", true);
-        initCRUD("companies", true);
-        initCRUD("branches", true);
+        initCRUD("regions", true, ["countries"]);
+        initCRUD("cities", true, ["regions"]);
+        initCRUD("companies", true, ["cities"]);
+        initCRUD("branches", true, ["companies"]);
 
         function showSection(id) {
             document.querySelectorAll(".view").forEach(sec => sec.classList.remove("active"));
@@ -148,4 +159,5 @@
         }
     </script>
 </body>
+
 </html>
