@@ -1,16 +1,16 @@
 {
-  "countries": [
+    "countries": [
     {
-      "id": "c472",
-      "name": "colombia"
+        "id": "1",
+        "name": "colombia"
     },
     {
-      "id": "a71c",
-      "name": "colombia"
+        "id": "2",
+        "name": "colombia"
     }
-  ],
-  "regions": [],
-  "cities": [],
-  "companies": [],
-  "branches": []
+    ],
+    "regions": [],
+    "cities": [],
+    "companies": [],
+    "branches": []
 }
