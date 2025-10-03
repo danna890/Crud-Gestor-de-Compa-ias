@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Regiones</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <h1>Lista de Regiones</h1>
     <select id="region-countryId"></select>
     <input type="text" id="regionName" placeholder="Nombre de la región">
-    <button id="addRegion">➕ Agregar Región</button>
-
+    <button id="addRegion">Agregar Región</button>
     <input type="text" id="searchRegion" placeholder="Buscar región">
-    <button id="searchRegionBtn">🔍 Buscar</button>
+    <button id="searchRegionBtn">Buscar</button>
     <div id="searchRegionResult"></div>
-
     <table>
         <thead>
             <tr>
@@ -28,11 +24,9 @@
         </thead>
         <tbody id="regionsTable"></tbody>
     </table>
-
     <script src="script.js"></script>
     <script>
         initCRUD("regions", true, ["countryId"]);
     </script>
 </body>
-
 </html>

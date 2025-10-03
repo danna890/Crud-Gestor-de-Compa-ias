@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Ciudades</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <h1>Lista de Ciudades</h1>
     <select id="city-regionId"></select>
     <input type="text" id="cityName" placeholder="Nombre de la ciudad">
-    <button id="addCity">➕ Agregar Ciudad</button>
-
+    <button id="addCity">Agregar Ciudad</button>
     <input type="text" id="searchCity" placeholder="Buscar ciudad">
-    <button id="searchCityBtn">🔍 Buscar</button>
+    <button id="searchCityBtn">Buscar</button>
     <div id="searchCityResult"></div>
-
     <table>
         <thead>
             <tr>
@@ -34,5 +30,4 @@
         initCRUD("cities", true, ["regionId"]);
     </script>
 </body>
-
 </html>

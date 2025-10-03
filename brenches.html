@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Sucursales</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <h1>Lista de Sucursales</h1>
     <select id="branch-companyId"></select>
     <input type="text" id="branchName" placeholder="Nombre de la sucursal">
-    <button id="addBranch">➕ Agregar Sucursal</button>
+    <button id="addBranch">Agregar Sucursal</button>
 
     <input type="text" id="searchBranch" placeholder="Buscar sucursal">
-    <button id="searchBranchBtn">🔍 Buscar</button>
+    <button id="searchBranchBtn">Buscar</button>
     <div id="searchBranchResult"></div>
 
     <table>
@@ -28,11 +26,9 @@
         </thead>
         <tbody id="branchesTable"></tbody>
     </table>
-
     <script src="script.js"></script>
     <script>
         initCRUD("branches", true, ["companyId"]);
     </script>
 </body>
-
 </html>
