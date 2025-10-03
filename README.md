@@ -66,13 +66,13 @@ Ejemplo de datos (`db.json`):
     { "id": 1, "name": "Colombia" }
   ],
   "regions": [
-    { "id": 1, "name": "Antioquia", "countryId": 1 }
+    { "id": 1, "name": "Antioquia", "Santander": 1 }
   ],
   "cities": [
-    { "id": 1, "name": "Medellín", "regionId": 1 }
+    { "id": 1, "name": "Medellín", "Bucaramanga": 1 }
   ],
   "companies": [
-    { "id": 1, "name": "Empresa A", "cityId": 1 }
+    { "id": 1, "name": "Empresa A", "Empresa B": 1 }
   ],
   "branches": [
     { "id": 1, "name": "Sucursal Centro", "companyId": 1 }
